@@ -5,12 +5,20 @@ import com.coofee.autotask.util.Request;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class TaskStart {
 
     public static void main(String[] args) {
         String user1token = args[0];
         new TaskStart().signin(user1token);
+        String user2token = args[1];
+        if(user2token != null){
+            try { TimeUnit.SECONDS.sleep(10); ;
+            } catch (InterruptedException ie){}
+            new TaskStart().signin(user2token);
+        }
+
     }
 
     public void signin(String  token){
