@@ -20,6 +20,7 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       env: 
-        TOKEN: ${{ secrets.LDTOKEN }}
+        TOKEN1: ${{ secrets.LDTOKEN }}
+        TOKEN2: ${{ secrets.BKTOKEN }}
       run:
-        mvn compile exec:java -Dexec.mainClass="com.coofee.autotask.TaskStart" -Dexec.args="${TOKEN}"
+        mvn compile exec:java -Dexec.mainClass="com.coofee.autotask.TaskStart" -Dexec.args="${TOKEN1} ${TOKEN2}"
