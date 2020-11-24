@@ -18,9 +18,9 @@ public class Request {
     private Request(){};
 
     /**
-     * 发送get请求
+     * 发送ldget请求
      */
-    public static JSONObject get(String url){
+    public static JSONObject getld(String url){
         HttpClient client = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet(url);
         httpGet.addHeader("Host","longde.vdongchina.org.cn");
@@ -28,6 +28,34 @@ public class Request {
         httpGet.addHeader("Connection","keep-alive");
         httpGet.addHeader("User-Agent","Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.17(0x17001124) NetType/WIFI Language/zh_CN");
         httpGet.addHeader("Referer","https://servicewechat.com/wx81a41ea914f34b85/52/page-frame.html");
+        HttpResponse resp = null;
+        String respContent = null;
+        try{
+            resp = client.execute(httpGet);
+            HttpEntity entity=null;
+            if(resp.getStatusLine().getStatusCode()<400){
+                entity = resp.getEntity();
+            } else{
+                entity = resp.getEntity();
+            }
+            respContent = EntityUtils.toString(entity, "UTF-8");
+        } catch (Exception e){
+        } finally {
+            return JSONObject.parseObject(respContent);
+        }
+    }
+
+    /**
+     * 发送hlget请求
+     */
+    public static JSONObject gethl(String url,String memberId,String access_token){
+        HttpClient client = HttpClients.createDefault();
+        HttpGet httpGet = new HttpGet(url);
+        httpGet.addHeader("Host","api.bhgmall.com.cn");
+        httpGet.addHeader("User-Agent","Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.17(0x17001124) NetType/WIFI Language/zh_CN");
+        httpGet.addHeader("Referer","https://servicewechat.com/wx1b1dda695dff82c8/121/page-frame.html");
+        httpGet.addHeader("memberId",memberId);
+        httpGet.addHeader("access_token",access_token);
         HttpResponse resp = null;
         String respContent = null;
         try{
