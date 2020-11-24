@@ -22,5 +22,7 @@ jobs:
       env: 
         TOKEN1: ${{ secrets.LDTOKEN }}
         TOKEN2: ${{ secrets.BKTOKEN }}
+        TOKEN3: ${{ secrets.HLTOKEN1 }}
+        TOKEN4: ${{ secrets.HLTOKEN2 }}
       run:
-        mvn compile exec:java -Dexec.mainClass="com.coofee.autotask.TaskStart" -Dexec.args="${TOKEN1} ${TOKEN2}"
+        mvn compile exec:java -Dexec.mainClass="com.coofee.autotask.TaskStart" -Dexec.args="${TOKEN1} ${TOKEN2} ${TOKEN3} ${TOKEN4}"
